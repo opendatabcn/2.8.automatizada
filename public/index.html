@@ -1,0 +1,128 @@
+<html>
+
+<head>
+  <title>OpenData CKAN</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <style>
+    ul {
+      margin-top: 15px
+    }
+
+    pre {
+      background-color: rgb(235, 232, 232);
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+
+    img {
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+    }
+
+    .soft {
+
+      background-color: #fcf9f9;
+      padding: 10px;
+
+    }
+
+    .git {
+      background-color: #333333;
+      color: #00ff00;
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a target="_self" class="navbar-brand" href="index.html">
+      Inicio
+    </a>
+    <span> Ejemplos API CKAN </span>
+  </nav>
+  <div class="container">
+    <h2>CKAN API Samples </h2>
+    <div class="alert alert-warning">
+      <h5> Recursos</h5>
+      <ul>
+        <li>
+          <a target="_blank" href="http://docs.ckan.org/en/latest/api/">http://docs.ckan.org/en/latest/api/</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://ckan.org">http://ckan.org</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://dataportals.org/">http://dataportals.org/</a>
+        </li>
+      </ul>
+    </div>
+    <div class="soft">
+      <h5>Ejemplo API CKAN
+        <a class="headerlink" href="#ejemplo-api-ckan" title="Permalink to this headline"></a>
+      </h5>
+      <p>El API de CKAN
+        <a class="reference external" href="http://docs.ckan.org/en/latest/api/index.html">http://docs.ckan.org/en/latest/api/index.html</a> no ofrece diferetes niveles y métodos para poder buscar y filtrar
+        datasets.
+      </p>
+      <p>En estos ejemplos utilzaremos diferentes mètodos de la API:</p>
+      <p>
+        <strong>resource_search</strong>
+        <a class="reference external" href="http://docs.ckan.org/en/latest/api/index.html#ckan.logic.action.get.resource_search">http://docs.ckan.org/en/latest/api/index.html#ckan.logic.action.get.resource_search</a> para buscar datasets en cualquier
+        portal de CKAN</p>
+      <p>Para buscar en portales CKAN necesitamos saber la URL del portal , exemplo
+        <a class="reference external" href="http://demo.ckan.org">http://demo.ckan.org</a> y añadir el path del método a utilizar
+        <strong>/api/3/action/resource_search?</strong>
+      </p>
+
+      <p>
+        <a target="_blank" class="reference external" href="http://demo.ckan.org/api/3/action/resource_search">http://demo.ckan.org/api/3/action/resource_search?</a>
+      </p>
+      <h5>Ejemplos peticiones</h5>
+      <a target="_blank" class="reference external" href="http://demo.ckan.org/api/3/action/package_search?q=museu">http://demo.ckan.org/api/3/action/package_search?q=museu</a>
+      </p>
+      <a target="_blank" class="reference external" href="http://opendata-ajuntament.barcelona.cat/data/api/3/action/package_search?q=museu">http://opendata-ajuntament.barcelona.cat/data/api/3/action/package_search?q=museu</a>
+      </p>
+
+      <a target="_blank" class="reference external" href="http://demo.ckan.org/api/3/action/resource_search?query=description:Museu">http://demo.ckan.org/api/3/action/resource_search?query=description:Museu</a>
+      </p>
+
+      <a target="_blank" class="reference external" href="http://opendata-ajuntament.barcelona.cat/data/api/3/action/resource_search?query=description:barri">http://opendata-ajuntament.barcelona.cat/data/api/3/action/resource_search?query=description:barri</a>
+      </p>
+
+      <a target="_blank" class="reference external" href="http://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search?resource_id=6cdada12-e98a-4720-b4bc-c14e23b43583&limit=15&q=Arxiu">http://opendata-ajuntament.barcelona.cat/data/api/3/action/datastore_search?resource_id=6cdada12-e98a-4720-b4bc-c14e23b43583&limit=15&q=Arxiu</a>
+    </div>
+    <ul>
+      <li>
+        <a class="btn-success btn" href="example_resource_search.html" target="_blank">1-example_resource_search.html</a>
+     
+        <a class="btn-success btn" href="example_datastore_search.html" target="_blank">2-example_datastore_search.html</a>
+     
+        <a class="btn-success btn" href="example_filestore_create.html" target="_blank">3-example_filestore_create.html</a>
+      </li>
+    </ul>
+
+
+  </div>
+
+  <body>
+
+</html>
