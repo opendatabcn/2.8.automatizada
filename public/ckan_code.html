@@ -1,0 +1,411 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+        <meta name="description" content="2.8 Automatizada">
+           
+        <meta name="lang:clipboard.copy" content="Copiar al portapapeles">
+      
+        <meta name="lang:clipboard.copied" content="Copiado al portapapeles">
+      
+        <meta name="lang:search.language" content="es">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No se encontraron documentos">
+      
+        <meta name="lang:search.result.one" content="1 documento encontrado">
+      
+        <meta name="lang:search.result.other" content="# documentos encontrados">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.1.0">
+    
+    
+      
+        <title>2.8 Ejemplos CKAN</title>
+      
+    
+    
+        <link rel="stylesheet" href="stylesheets/application.11e41852.css">
+      
+      
+    
+    
+      <script src="javascripts/modernizr.20ef595d.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="fonts/material-icons.css">
+    
+    
+    
+  </head>
+  
+    <body dir="ltr">
+      <nav class="navbar navbar-light bg-light">
+        <a target="_self" class="navbar-brand" href="index.html">
+          Inicio
+        </a>
+        <span> Ejemplos API CKAN </span>
+      </nav>
+   
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+       
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+               
+                
+                
+                <h1 id="api-servicios-open-data-ckan-y-socrata">API servicios Open Data (CKAN y SOCRATA)</h1>
+<h2 id="ejemplo-api-ckan">Ejemplo API CKAN</h2>
+<p>El API de CKAN <a href="http://docs.ckan.org/en/latest/api/index.html">http://docs.ckan.org/en/latest/api/index.html</a> no ofrece diferetes niveles y métodos para poder buscar y filtrar datasets.</p>
+<p>En este ejemplo utilizaremos el método <a href="http://docs.ckan.org/en/latest/api/index.html#ckan.logic.action.get.resource_search">resource_search</a> para buscar datasets en cualquier portal de CKAN</p>
+<p>Para buscar en portales CKAN necesitamos saber la URL del portal , exemplo <a href="http://demo.ckan.org">http://demo.ckan.org</a> y añadir el path del método a utilizar <strong>/api/3/action/resource_search?</strong></p>
+<p><a href="http://demo.ckan.org/api/3/action/resource_search">http://demo.ckan.org/api/3/action/resource_search</a>?</p>
+<p><a href="../ejemplos/utilizacion-servicio-opendata/">Ver ejemplos online</a>   </p>
+<h4 id="creacion-de-un-buscador">Creación de un buscador</h4>
+<ul>
+<li>
+<p>Dentro de nuestor espacio de trabaj creamos un archivo con el nombre de <em>ckan.html</em>.</p>
+</li>
+<li>
+<p>Abrimos el archivo <em>ckan.html</em> con un editor de texto y copiamos el siguiente código.</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="cp">&lt;!DOCTYPE html&gt;</span>
+  <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>
+            Bàsic sample Resource Search API CKAN
+    <span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+            <span class="p">#</span><span class="nn">results</span> <span class="p">{</span>
+                    <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+                    <span class="k">background-color</span><span class="p">:</span> <span class="mh">#f2f2f2</span><span class="p">;</span>
+                    <span class="k">margin</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+            <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>
+<p>Abrimos el archivo <em>ckan.html</em> en el navegador.</p>
+</li>
+<li>
+<p>Añadimos dentro del tag  <code>&lt;body&gt;</code> la maquetación HTML</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Resource Search example <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> Package Search <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://docs.ckan.org/en/latest/api/&quot;</span><span class="p">&gt;</span>http://docs.ckan.org/en/latest/api/<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+     <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;_form&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;url_ckan&quot;</span><span class="p">&gt;</span>Url:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;url_ckan&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;http://demo.ckan.org/api/3/action/resource_search?&quot;</span><span class="p">&gt;</span>ckan.org<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;http://old.datahub.io/api/3/action/resource_search?&quot;</span><span class="p">&gt;</span>old.datahub.io<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+                <span class="c">&lt;!-- añadimos BCN opendata --&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;text_filter_ckan&quot;</span><span class="p">&gt;</span> Filter <span class="p">&lt;</span><span class="nt">u</span><span class="p">&gt;</span>(name, descripton, format )<span class="p">&lt;/</span><span class="nt">u</span><span class="p">&gt;&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;text_filter_ckan&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;name:wifi&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;text filter&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-inline&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;num_results_ckan&quot;</span><span class="p">&gt;</span>Num results<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;number&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;3&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;num_results_ckan&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;5&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;bt_send&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;btn btn-default btn-success&quot;</span><span class="p">&gt;</span>Send<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;results&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mygrid&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;height: 500px&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>
+<p>Abrimos el archivo <em>ckan.html</em> en el navegador.</p>
+</li>
+<li>
+<p>Añadimos just encima del tag <code>&lt;/head&gt;</code> el siguiente código javascript</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSetup</span><span class="p">({</span>
+    <span class="nx">cache</span><span class="o">:</span> <span class="kc">true</span>
+  <span class="p">});</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#bt_send&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">sendRequest</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#_form&quot;</span> <span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="nx">sendRequest</span><span class="p">();</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">function</span> <span class="nx">sendRequest</span><span class="p">(){</span>
+      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">rows</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#num_results_ckan&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+        <span class="nx">query</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#text_filter_ckan&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+      <span class="p">};</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+<span class="nx">url</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#url_ckan&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+<span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span>
+<span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+<span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#results&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Total results found: &#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mygrid&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">count</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mygrid&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;ul&gt;&#39;</span><span class="p">);</span>
+      <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">results</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mygrid&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;: &lt;a href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span>
+          <span class="s1">&#39;&lt;/a&gt;&#39;</span><span class="p">);</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mygrid&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#mygrid&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#results&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;An error occured: &quot;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="nx">error</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#results&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;An error occured: &quot;</span> <span class="o">+</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">statusText</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">});</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<ul>
+<li>Abrimos pàgina <em>ckan.html</em> y lanzamos búsquedas</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejercicio 1</strong>: Añadir una o más URLs de otros portales de CKAN, por ejemplo OpenDataBCN</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejercicio 2</strong>: ¿Cómo haríamos para qué en los resultados apareciera la fecha de creación del dato?</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejercicio 3</strong>: Descargamos CSV accidentes</p>
+</div>
+
+<p>Referencias</p>
+<p><a href="http://docs.ckan.org/en/latest/api/">http://docs.ckan.org/en/latest/api/</a>
+<a href="http://ckan.org">http://ckan.org</a>
+<a href="https://www.socrata.com">https://www.socrata.com</a>
+<a href="http://docs.socratadiscovery.apiary.io">http://docs.socratadiscovery.apiary.io</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+
+      
+    </div>
+    
+      <script src="javascripts/application.9e1f3b71.js"></script>
+      
+        
+        
+          
+          <script src="javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+              
+                <script src="javascripts/lunr/lunr.es.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
