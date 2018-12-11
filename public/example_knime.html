@@ -1,0 +1,143 @@
+<html>
+
+<head>
+  <title>OpenData KNIME</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+    crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+  <link rel="stylesheet" href="stylesheets/application.11e41852.css">
+
+  <style>
+    ul {
+      margin-top: 15px
+    }
+
+    pre {
+      background-color: rgb(235, 232, 232);
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+
+    img {
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+    }
+
+    .soft {
+
+      background-color: #fcf9f9;
+      padding: 10px;
+
+    }
+
+    .git {
+      background-color: #333333;
+      color: #00ff00;
+      margin-top: 15px;
+      margin-bottom: 15px
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a target="_self" class="navbar-brand" href="index.html">
+      Inicio
+    </a>
+    <span> Ejemplos KNIME </span>
+  </nav>
+  <div class="container">
+    <h3>Ejemplo API Bicing y KNIME </h3>
+    <div class="alert alert-warning">
+      <h5> Recursos</h5>
+      <ul>
+        <li>
+          <a target="_blank" href="https://www.knime.com/downloads/download-knime">Download KNIME Analytics Platform</a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.knime.com/nodeguide/data-access/rest-web-services/data-api-using-rest-nodes">https://www.knime.com/nodeguide/data-access/rest-web-services/data-api-using-rest-nodes</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://wservice.viabicing.cat/v2/stations">API Bicing</a>
+        </li>
+      </ul>
+    </div>
+    <div class="soft">
+      <h5>KNIME
+        <a class="headerlink" href="#ejemplo-api-ckan" title="Permalink to this headline"></a>
+      </h5>
+      <p>KNIME (o Konstanz Information Miner) es una plataforma de minería de datos que permite el desarrollo de
+        modelos en un entorno visual.
+        Está desarrollado sobre la plataforma Eclipse y programado, esencialmente, en java. Está concebido como una
+        herramienta gráfica y dispone de una serie de nodos (que encapsulan distintos tipos de algoritmos) y flechas
+        (que representan flujos de datos) que se despliegan y combinan de manera gráfica e interactiva.
+
+        Los nodos implementan distintos tipos de acciones que pueden ejecutarse sobre una tabla de datos:
+
+        Manipulación de filas, columnas, etc., como muestreos, transformaciones, agrupaciones, etc.
+        Visualización (histogramas, etc.).
+        Creación de modelos estadísticos y de minería de datos, como árboles de decisión, máquinas de vector soporte,
+        regresiones, etc.
+        Validación de modelos, como curvas ROC, etc.
+        Scoring o aplicación de dichos modelos sobre conjuntos nuevos de datos.
+        Creación de informes a medida gracias a su integración con BIRT
+      </p>
+      <h4>API Bicing de BCN</h4>
+      El servicio de Bicing de BCN dispone de una API JSON en tiempo real para obtener la ocupación de la paradas de
+      bicing
+      <a target="_blank" href="http://wservice.viabicing.cat/v2/stations">http://wservice.viabicing.cat/v2/stations</a>
+      <p></p>
+      <h4>Ejemplo</h4>
+      <p>
+        <ul>
+          <li>Llamaremos API de Bicing</li>
+          <li>Convertiremos JSON en CSV</li>
+          <li>Guardaremos en mode "append" el archivo a disco bicing.csv</li>
+          <li>Visualizaremos archivo con Kepler.gl</li>
+        </ul>
+      </p>
+      <h4>Pasos a seguir</h4>
+      <p>
+        <ul>
+          <li>
+            1 - Instalar KNIME Analytics Platform
+            <a target="_blank" href="https://www.knime.com/downloads/download-knime">https://www.knime.com/downloads/download-knime</a>
+
+          </li>
+          <li>
+            2 - Abrir KNIME y importar archivo
+
+          </li>
+          <li>3 - Para ejecutar el workflow : Node -->Execute ALL</li>
+
+          <li>
+            3 - Task Scheduler de windows automatizar el proceso<br>
+            <code>
+              ./knime.exe -consoleLog -nosplash -reset -application org.knime.product.KNIME_BATCH_APPLICATION
+              -workflowDir=C:/knime-workspace/bicing
+            </code>
+          </li>
+          <li>4 - Visualizaremos archivo con <a target="_blank" href="http://kepler.gl/#/">Kepler.gl</a></li>
+        </ul>
+      </p>
+
+    </div>
+
+    <body>
+
+</html>
