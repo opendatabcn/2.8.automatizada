@@ -10,7 +10,7 @@
     "ckan": "^0.2.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "^4.16.4",
     "fast-csv": "^2.3.0",
     "morgan": "^1.9.1",
     "pug": "~2.0.0-beta11",
